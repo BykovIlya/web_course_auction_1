@@ -1,0 +1,1 @@
+"use strict";function sendAjax(e,a,t){$.ajax({url:e,type:t,data:a})}$(document).ready(function(){$("#save").click(function(){sendAjax("/auctionSettings/rewrite",{dateBegin:$("#dateBegin").val(),timeBegin:$("#timeBegin").val(),timeout:$("#timeout").val(),interval:$("#interval").val(),pause:$("#pause").val(),picName:$("#addNewPic").val()},"put")})});

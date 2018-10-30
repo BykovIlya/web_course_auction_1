@@ -1,0 +1,80 @@
+extends layout
+block title
+    | Index page
+block content
+    include ./header
+    div(class='content')
+        aside(class="modal" id="modalSave")
+            header
+                h3 Cохранение
+            section
+                form(id="delete_par", action="#", method="post")
+                    p Сохранено
+            footer
+                div(class="buttons")
+                    div(class="cancel")
+                        a(href='#' class="buttons" id="___cancel") Ок
+        aside(class="modal" id="auction")
+            header
+                h3 Изменить счет
+            section
+                form(id="delete_par_", action="#", method="post")
+                    table
+                        tr
+                            td Дата начала:
+                            td
+                                input(type="date" id="dateBegin")
+                        tr
+                            td Время начала:
+                            td
+                                input(type="time" id="timeBegin")
+                        tr
+                            td Таймаут продажи картины (мин.):
+                            td
+                                input(type="number" id="timeout")
+                        tr
+                            td Интервал времени отсчета (мин.):
+                            td
+                                input(type="number" id="interval")
+                        tr
+                            td Пауза (мин.):
+                            td
+                                input(type="number" id="pause")
+                        tr
+                            td Название картины
+                                td
+                                    select#addNewPic
+                                        for pic in pictures
+                                            if (pic["inAuction"] == true)
+                                               option #{pic["name"]}
+            footer
+                div(class="buttons" align="center")
+                    a(class="buttons" id="save" href="#modalSave" form="delete_par") Сохранить
+        div(class='cardBook')
+            h4(align="center") Настройки аукциона
+            table
+                for a in auction
+                    if (a.id = "auction")
+                        tr
+                            td Дата начала:
+                            td #{a["dateBegin"]}
+
+                        tr
+                            td Время начала:
+                            td #{a["timeBegin"]}
+
+                        tr
+                            td Таймаут продажи картины (мин.):
+                            td #{a["timeout"]}
+                        tr
+                            td Интервал времени отсчета (мин.):
+                            td #{a["interval"]}
+                        tr
+                            td Пауза (мин.):
+                            td #{a["pause"]}
+            div(class="buttons")
+                div(class="add")
+                    a(href='#auction_bykov',class="buttons",id="_add" form="delete_par_") Изменить
+        script
+            include ../public/javascripts/auctionSettings.js
+    include ./footer

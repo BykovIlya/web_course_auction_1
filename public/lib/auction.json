@@ -1,0 +1,11 @@
+{
+  "myAuc": {
+    "id": "auction",
+    "dateBegin": "2018-10-23",
+    "timeBegin": "10:10",
+    "timeout": "10",
+    "interval": "50",
+    "pause": "10",
+    "picName": "Девочка"
+  }
+}
