@@ -4,42 +4,32 @@ block title
 block content
     include ./header
     div(class='content')
-        aside(class="modal" id="modalSave")
-            header
-                h3 Cохранение
-            section
-                form(id="delete_par", action="#", method="post")
-                    p Сохранено
-            footer
-                div(class="buttons")
-                    div(class="cancel")
-                        a(href='#' class="buttons" id="___cancel") Ок
         aside(class="modal" id="auction")
             header
-                h3 Изменить счет
+                h3 Изменить параметры аукциона
             section
                 form(id="delete_par_", action="#", method="post")
                     table
                         tr
                             td Дата начала:
                             td
-                                input(type="date" id="dateBegin")
+                                input(type="date" id="dateBegin" value = auction["dateBegin"])
                         tr
                             td Время начала:
                             td
-                                input(type="time" id="timeBegin")
+                                input(type="time" id="timeBegin" value = auction["timeBegin"])
                         tr
                             td Таймаут продажи картины (мин.):
                             td
-                                input(type="number" id="timeout")
+                                input(type="number" id="timeout" value = auction["timeout"])
                         tr
                             td Интервал времени отсчета (мин.):
                             td
-                                input(type="number" id="interval")
+                                input(type="number" id="interval" value = auction["interval"])
                         tr
                             td Пауза (мин.):
                             td
-                                input(type="number" id="pause")
+                                input(type="number" id="pause" value = auction["pause"])
                         tr
                             td Название картины
                                 td
@@ -53,28 +43,29 @@ block content
         div(class='cardBook')
             h4(align="center") Настройки аукциона
             table
-                for a in auction
-                    if (a.id = "auction")
-                        tr
-                            td Дата начала:
-                            td #{a["dateBegin"]}
+                tr
+                    td Дата начала:
+                    td#td1 #{auction["dateBegin"]}
 
-                        tr
-                            td Время начала:
-                            td #{a["timeBegin"]}
+                tr
+                    td Время начала:
+                    td#td2 #{auction["timeBegin"]}
 
-                        tr
-                            td Таймаут продажи картины (мин.):
-                            td #{a["timeout"]}
-                        tr
-                            td Интервал времени отсчета (мин.):
-                            td #{a["interval"]}
-                        tr
-                            td Пауза (мин.):
-                            td #{a["pause"]}
+                tr
+                    td Таймаут продажи картины (мин.):
+                    td#td3 #{auction["timeout"]}
+                tr
+                    td Интервал времени отсчета (мин.):
+                    td#td4 #{auction["interval"]}
+                tr
+                    td Пауза (мин.):
+                    td#td5 #{auction["pause"]}
+                tr
+                    td Картина:
+                    td#td6 #{auction["picName"]}
             div(class="buttons")
                 div(class="add")
-                    a(href='#auction_bykov',class="buttons",id="_add" form="delete_par_") Изменить
+                    a(href='#auction',class="buttons",id="_add" form="delete_par_") Изменить
         script
             include ../public/javascripts/auctionSettings.js
     include ./footer

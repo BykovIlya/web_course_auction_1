@@ -157,7 +157,7 @@ router.put('/pictures/renamePicture',(req,res) => {
     }
     if (pictures.arr[index].inAuction == true) {
         pic.inAuction = true;
-        pic.link = pictures.arr[index].link
+        pic.link = pictures.arr[index].link;
         pictures.arr[index] = pic;
         dbPictures.get('arr')
             .find({ id: pic.id})
@@ -165,7 +165,7 @@ router.put('/pictures/renamePicture',(req,res) => {
             .write()
     } else {
         pic.inAuction = false;
-        pic.link = pictures.arr[index].link
+        pic.link = pictures.arr[index].link;
         pictures.arr[index] = pic;
         dbPictures.get('arr')
             .find({ id: pic.id})
@@ -216,9 +216,8 @@ router.put("/pictures/addInAuction", (req,res) => {
 
 router.put('/auctionSettings/rewrite',(req,res)=> {
     var auc = req.body;
-    dbAuction.get('myAuc')
-        .find({ id: "auction"})
-        .assign(auc)
+    auc.id="auction";
+    dbAuction.set('myAuc', auc)
         .write();
     auction.myAuc = auc;
     console.log(auction.myAuc);
